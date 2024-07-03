@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta id="versionHash" content="VERSION_HASH_HERE"/>
+    <meta id="versionID" content="VERSION_ID_HERE"/>
+    <title>floof.io</title>
+	<link rel="canonical" href="https://floof.netlify.app" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+    <meta name="apple-mobile-web-app-title" content="Floof">
+    <meta name="application-name" content="Floof">
+    <link rel="icon" type="image/png" href="resources/icons/favicon.png"/>
+    <meta name="theme-color" content="#119911">
+    <link rel="stylesheet" href="style.css"/>
+    <script>
+        /*window.onerror = function (message, source, lineno, colno, error) {
+            alert("Error: " + message + "\nSource: " + source + "\nLine: " + lineno + "\nColumn: " + colno + "\nError: " + error);
+        };*/
+    </script>
+</head>
+<body oncontextmenu="return false">
+    <canvas id="canvas" tabindex="0"></canvas>
+    <div id="beforeGameStart">
+        <div id="loading">Loading</div>
+        <div id="mainMenu">
+            <span class="link" onclick="void toggleChangelog()" id="scroll"></span>
+            <a class="link" href="https://discord.gg/bzvsEvG8Qg" id="discord"></a>
+        </div>
+        <div id="loginMenu" class="textInputContainer">
+            <input id="username" placeholder="Username"/><br/>
+            <input id="password" placeholder="Password" type="password"/><br/>
+            <button onclick="void login()">Login</button><br/>
+            <span id="infoText">Account is provided by the discord bot (!register [Username])</span>
+        </div>
+        <div id="changelog"></div>
+        <button id="playButton" onclick="void submit()">Play</button>
+    </div>
+    <script>
+        {
+            let loaded = 0,
+                total = 3,
+                enabled = true;
+            Object.defineProperty(window, "loadScript", {
+                value: function () {
+                    if (enabled === false) {
+                        return;
+                    }
+                    loaded++;
+                    if (loaded === total) {
+                        enabled = false;
+                        window.loadFunc();
+                    }
+                },
+                writable: false,
+                enumerable: false,
+                configurable: false
+            });
+            Object.defineProperty(window, "noConnect", {
+                value: function () {
+                    document.getElementById("loading").innerHTML = "Cannot establish connection to server.";
+                    document.getElementById("loading").style.fontSize = "20px";
+                },
+                writable: false,
+                enumerable: false,
+                configurable: false
+            });
+        }
+    </script>
+    <script src="js/setup.js" defer></script>
+    <script src="js/startMenu.js" defer></script>
+    <script src="js/app.js" defer></script>
+<center><font size="2">This is the free demo result. You can also download a <a href="http://www.waybackmachinedownloader.com/en/">complete website</a> from <a href="https://archive.org">archive.org</a>.</font></center></body>
+</html>
